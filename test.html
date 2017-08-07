@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发表评论，显示字符串长度</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://cdn.bootcss.com/react/15.6.1/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.6.1/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-alpha.15/babel.min.js"></script>
+    <script type="text/babel">
+        var TextareaCount = React.createClass({
+            getInitialState: function(){
+                return {
+                    text: "", //input框初始化值
+                    pText: ""  //p标签初始化值
+                };
+            },
+            inputChange: function(){
+                this.setState({
+                    text: event.target.value    //当input的value发生改变的时候text的状态
+                });
+            },
+            inputValue: function(){
+                this.setState({
+                    pText: this.state.text  //当点击“点击发送”之后pText的数据状态
+                });
+            },
+            render: function(){
+                return (
+                    <div>
+                        <input value={this.state.text} onChange={this.inputChange}/>
+                        <input type='button' onClick={this.inputValue} value='点击发送'/>
+                        <h3>{this.state.text.length}</h3>
+                        <p>{this.state.pText}</p>
+                    </div>
+                );
+            }
+        });
+        ReactDOM.render(
+            <TextareaCount/>,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>
